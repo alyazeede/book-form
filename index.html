@@ -4,12 +4,57 @@
   <meta charset="UTF-8">
   <title>نموذج تسجيل إصدار</title>
   <style>
-    body { font-family: 'Arial', sans-serif; direction: rtl; padding: 30px; background-color: #f4f4f4; }
-    form { background: white; padding: 20px; border-radius: 10px; width: 100%; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-    label { margin: 10px 0 5px; display: block; }
-    input, button { width: 100%; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; }
-    button { background-color: #007bff; color: white; border: none; cursor: pointer; }
-    #response { text-align: center; margin-top: 15px; }
+    body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      padding: 30px;
+      background-color: #f4f4f4;
+    }
+
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 500px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      margin: 10px 0 5px;
+      display: block;
+      font-weight: bold;
+    }
+
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #response {
+      text-align: center;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    .success {
+      color: green;
+    }
+
+    .error {
+      color: red;
+    }
   </style>
 </head>
 <body>
@@ -54,11 +99,15 @@
       })
       .then(res => res.text())
       .then(msg => {
-        document.getElementById("response").textContent = msg;
+        const response = document.getElementById("response");
+        response.textContent = msg;
+        response.className = "success";
         form.reset();
       })
       .catch(err => {
-        document.getElementById("response").textContent = "حدث خطأ، حاول لاحقًا.";
+        const response = document.getElementById("response");
+        response.textContent = "حدث خطأ، حاول لاحقًا.";
+        response.className = "error";
       });
     });
   </script>
